@@ -1,0 +1,15 @@
+{
+  "name": "Abbi-V3",
+  "version": "1.0.0",
+  "main": "src/index",
+  "author": "traditionallimb",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-tesseract": "^0.0.3"
+  },
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0"
+  }
+}
