@@ -19,7 +19,7 @@ module.exports = class traditionalclient extends Client {
 
 
 		this.once('ready', () => {
-			console.log(`Logged in as ${this.user.username}`);
+			console.log(`logged in as ${this.user.username}`);
 		});
 
 		this.on('message', async (message) => {
