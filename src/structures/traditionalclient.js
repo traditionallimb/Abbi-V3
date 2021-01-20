@@ -1,4 +1,5 @@
 const { Client } = require('discord.js');
+const config = require('../config.json');
 
 module.exports = class traditionalclient extends Client {
 
@@ -18,7 +19,7 @@ module.exports = class traditionalclient extends Client {
 
 			if (!message.guild || message.author.bot) return;
 
-			if (message.content.match(mentionRegex)) message.channel.send(`My prefix for ${message.guild.name} is \`${ENV.PREFIX}\`.`);
+			if (message.content.match(mentionRegex)) message.channel.send(`My prefix for ${message.guild.name} is \`${config.token}\`.`);
 
 			const prefix = message.content.match(mentionRegexPrefix) ?
 				message.content.match(mentionRegexPrefix)[0] : this.prefix;
@@ -28,6 +29,10 @@ module.exports = class traditionalclient extends Client {
 
 			if (cmd.toLowerCase() === 'hello') {
 				message.channel.send('Hai!');
+			}
+
+			if (cmd === 'POGCHAMP') {
+				message.channel.send(':pog:');
 			}
 		});
 	}
@@ -43,7 +48,7 @@ module.exports = class traditionalclient extends Client {
 		this.prefix = options.prefix;
 	}
 
-	async login(token = this.token) {
+	async start(token = this.token) {
 		super.login(token);
 	}
 
