@@ -1,5 +1,5 @@
 const { Client } = require('discord.js');
-const config = require('../config.json');
+const config = require('../../config.json');
 
 module.exports = class traditionalclient extends Client {
 
@@ -32,7 +32,7 @@ module.exports = class traditionalclient extends Client {
 			}
 
 			if (cmd === 'POGCHAMP') {
-				message.channel.send(':pog:');
+				message.channel.send('<:pog:796496991483068456>');
 			}
 		});
 	}
