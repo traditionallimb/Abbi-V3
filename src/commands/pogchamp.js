@@ -1,0 +1,17 @@
+const command = require('./../structures/command.js');
+
+module.exports = class extends command {
+
+	constructor(...args) {
+		super(...args, {
+			aliases: ['pog', 'poggers', 'pogge', 'pogger', 'pogging']
+		});
+	}
+
+
+	// eslint-disable-next-line no-unused-vars
+	async run(message, args) {
+		message.channel.send('<:pog:796496991483068456>');
+	}
+
+};

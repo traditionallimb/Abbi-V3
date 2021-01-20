@@ -1,5 +1,6 @@
-const { Client } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const config = require('../../config.json');
+const util = require('./util.js');
 
 module.exports = class traditionalclient extends Client {
 
@@ -8,6 +9,14 @@ module.exports = class traditionalclient extends Client {
 			disableMentions: 'everyone'
 		});
 		this.validate(options);
+
+		this.commands = new Collection();
+
+		this.aliases = new Collection();
+
+		// eslint-disable-next-line new-cap
+		this.utils = new util(this);
+
 
 		this.once('ready', () => {
 			console.log(`Logged in as ${this.user.username}`);
@@ -19,7 +28,7 @@ module.exports = class traditionalclient extends Client {
 
 			if (!message.guild || message.author.bot) return;
 
-			if (message.content.match(mentionRegex)) message.channel.send(`My prefix for ${message.guild.name} is \`${config.token}\`.`);
+			if (message.content.match(mentionRegex)) message.channel.send(`my prefix for ${message.guild.name} is \`${config.token}\`.`);
 
 			const prefix = message.content.match(mentionRegexPrefix) ?
 				message.content.match(mentionRegexPrefix)[0] : this.prefix;
@@ -27,6 +36,10 @@ module.exports = class traditionalclient extends Client {
 			// eslint-disable-next-line no-unused-vars
 			const [cmd, ...args] = message.content.slice(prefix.length).trim().split(/ +/g);
 
+			const command = this.commands.get(cmd.toLowerCase()) || this.commands.get(this.aliases.get(cmd.toLowerCase()));
+			if (command) {
+				command.run(message.args);
+			}
 			if (cmd.toLowerCase() === 'hello') {
 				message.channel.send('Hai!');
 			}
@@ -38,17 +51,18 @@ module.exports = class traditionalclient extends Client {
 	}
 
 	validate(options) {
-		if (typeof options !== 'object') throw new TypeError('Options should be a type of Object');
+		if (typeof options !== 'object') throw new TypeError('options should be a type of object');
 
-		if (!options.token) throw new Error('You must pass the token for the client.');
+		if (!options.token) throw new Error('you must pass the token for the client.');
 		this.token = options.token;
 
-		if (!options.prefix) throw new Error('You must pass a prefix for the client');
-		if (typeof options.prefix !== 'string') throw new TypeError('Prefix should be a type of string');
+		if (!options.prefix) throw new Error('you must pass a prefix for the client');
+		if (typeof options.prefix !== 'string') throw new TypeError('prefix should be a type of string');
 		this.prefix = options.prefix;
 	}
 
 	async start(token = this.token) {
+		this.utils.loadCommands();
 		super.login(token);
 	}
 
