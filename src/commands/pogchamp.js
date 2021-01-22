@@ -4,10 +4,9 @@ module.exports = class extends command {
 
 	constructor(...args) {
 		super(...args, {
-			aliases: ['pog', 'poggers', 'pogge', 'pogger', 'pogging']
+			aliases: ['pog', 'pogger', 'pogging']
 		});
 	}
-
 
 	// eslint-disable-next-line no-unused-vars
 	async run(message, args) {

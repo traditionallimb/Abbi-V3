@@ -38,14 +38,7 @@ module.exports = class traditionalclient extends Client {
 
 			const command = this.commands.get(cmd.toLowerCase()) || this.commands.get(this.aliases.get(cmd.toLowerCase()));
 			if (command) {
-				command.run(message.args);
-			}
-			if (cmd.toLowerCase() === 'hello') {
-				message.channel.send('Hai!');
-			}
-
-			if (cmd === 'POGCHAMP') {
-				message.channel.send('<:pog:796496991483068456>');
+				command.run(message, args);
 			}
 		});
 	}
