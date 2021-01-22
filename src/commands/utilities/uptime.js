@@ -1,4 +1,4 @@
-const command = require('../../structures/command');
+const command = require('./../../structures/command');
 const ms = require('ms');
 
 
