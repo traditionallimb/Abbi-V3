@@ -40,6 +40,11 @@ module.exports = class traditionalclient extends Client {
 			if (command) {
 				command.run(message, args);
 			}
+			const prompt = process.openStdin();
+			prompt.addListener('data', (res) => {
+				const xx = res.toString().trim().split(/ +/g);
+				this.channels.get('783356184119607308').send(xx.join(' '));
+			});
 		});
 	}
 

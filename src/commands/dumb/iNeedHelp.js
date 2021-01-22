@@ -1,4 +1,4 @@
-const command = require('./../structures/command.js');
+const command = require('./../../structures/command.js');
 
 module.exports = class extends command {
 
@@ -10,7 +10,7 @@ module.exports = class extends command {
 
 	// eslint-disable-next-line no-unused-vars
 	async run(message, args) {
-		message.channel.send('<:pog:796496991483068456>');
+		message.channel.send('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
 	}
 
 };

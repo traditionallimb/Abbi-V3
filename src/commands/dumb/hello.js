@@ -1,16 +1,16 @@
-const command = require('./../structures/command.js');
+const command = require('../../structures/command.js');
 
 module.exports = class extends command {
 
 	constructor(...args) {
 		super(...args, {
-			aliases: ['pog', 'pogger', 'pogging']
+			aliases: ['hallo', 'hai', 'hi']
 		});
 	}
 
 	// eslint-disable-next-line no-unused-vars
 	async run(message, args) {
-		message.channel.send('<:hype:802138536701853726>');
+		message.channel.send('Hai!');
 	}
 
 };
